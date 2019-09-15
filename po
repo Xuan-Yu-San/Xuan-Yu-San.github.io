@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style> 
+        .td{width: auto; height: auto;border: 1px solid=#000000}
+    </style> 
+    <style>
+        .textarea{font-size: 14px;}
+        #demo1{width: 126px;height: 20px;}
+        #demo2{width: 126px;height: 20px;}
+        #demo3{width: 126px;height: 20px;}
+        #demo4{width: 126px;height: 20px;}
+        #demo5{width: 126px;height: 20px;}
+        #demo6{width: 126px;height: 20px;}
+    </style>
+    <style>
+        .input{font-size: 14px; align-self: auto;}
+    </style>
+</head>
+<body>
+
+<div>
+        <button onclick="document.getElementById('myImage').src='https://www.w3school.com.cn/i/eg_bulbon.gif'">开灯</button>
+
+        <img id="myImage" border="0" src="https://www.w3school.com.cn/i/eg_bulboff.gif" style="text-align:center;">
+        
+        <button onclick="document.getElementById('myImage').src='https://www.w3school.com.cn/i/eg_bulboff.gif'">关灯</button>
+</div>
+    
+<table>
+    <tr>
+        <td><input id="1" type ="text" value="0"></td>
+        <td><input id="2" type ="text" value="0"></td>
+        <td><input id="3" type ="text" value="0"></td>
+    </tr>
+    <tr>
+        <td><input id="4" type ="text" value="0"></td>
+        <td><input id="5" type ="text" value="0"></td>
+        <td><input id="6" type ="text" value="0"></td>
+    </tr>
+    <tr>
+    <td><textarea id="demo1" type="text">&nbsp;</textarea></td>
+    <td><textarea id="demo2" type="text">&nbsp;</textarea></td>
+    <td><textarea id="demo3" type="text">&nbsp;</textarea></td>
+    <td><button onclick="XM()">叉乘</button></td>
+    </tr>
+    <tr>
+    <td><textarea id="demo4" type="text">ans</textarea></td>
+    <td><textarea id="demo5" type="text">area</textarea></td>
+    <td><textarea id="demo6" type="text">&nbsp;</textarea></td>
+    <td><button onclick="PM()">点乘</button></td>
+    </tr>
+</table>
+<script>
+function GetData(obj1,obj2,obj3,obj4,obj5,obj6){
+    obj1.num = parseInt(document.getElementById("1").value);
+    obj2.num = parseInt(document.getElementById("2").value);
+    obj3.num = parseInt(document.getElementById("3").value);
+    obj4.num = parseInt(document.getElementById("4").value);
+    obj5.num = parseInt(document.getElementById("5").value);
+    obj6.num = parseInt(document.getElementById("6").value);
+}
+
+function XM(){
+    var x1=new Object(),x2=new Object(),x3=new Object(),x4=new Object(),x5=new Object(),x6=new Object();
+    GetData(x1,x2,x3,x4,x5,x6);
+    document.getElementById('demo1').innerHTML  = x2.num*x6.num-x3.num*x5.num;
+    document.getElementById('demo2').innerHTML  = x3.num*x4.num-x1.num*x6.num;
+    document.getElementById('demo3').innerHTML  = x1.num*x5.num-x2.num*x4.num;
+}
+function PM(){
+    var x1=new Object(),x2=new Object(),x3=new Object(),x4=new Object(),x5=new Object(),x6=new Object();
+    GetData(x1,x2,x3,x4,x5,x6);
+    document.getElementById('demo4').innerHTML  = x1.num*x4.num+x2.num*x5.num+x3.num*x6.num;
+}
+</script>
+</body>
+</html>
