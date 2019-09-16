@@ -2,7 +2,9 @@
 <html>
 <head>
     <style> 
-        .td{width: auto; height: auto;border: 1px solid=#000000}
+        .tr{height: 30px;}
+        #tip{width: 40px}
+        #text{width: 60px}
     </style> 
     <style>
         .textarea{font-size: 14px;}
@@ -12,9 +14,15 @@
         #demo4{width: 126px;height: 20px;}
         #demo5{width: 126px;height: 20px;}
         #demo6{width: 126px;height: 20px;}
+        #demo7{width: 126px;height: 20px;}
+        #demo8{width: 126px;height: 20px;}
+        #demo9{width: 126px;height: 20px;}
+        #n{width: 20px;height: 20px;}
     </style>
     <style>
         .input{font-size: 14px; align-self: auto;}
+        .p{font-size: 14px;align-self: auto;}
+        .button{height: 20px;}
     </style>
 </head>
 <body>
@@ -29,49 +37,152 @@
     
 <table>
     <tr>
-        <td><input id="1" type ="text" value="0"></td>
-        <td><input id="2" type ="text" value="0"></td>
-        <td><input id="3" type ="text" value="0"></td>
+        <td id="tip"><a>A</a></td>
+        <td id="text"><input id="1" type ="text" value="0"></td>
+        <td id="text"><input id="2" type ="text" value="0"></td>
+        <td id="text"><input id="3" type ="text" value="0"></td>
+        <td id="text"><button onclick="Change1()">与答案交换</button></td>
     </tr>
     <tr>
-        <td><input id="4" type ="text" value="0"></td>
-        <td><input id="5" type ="text" value="0"></td>
-        <td><input id="6" type ="text" value="0"></td>
+        <td id="tip"><a>B</a></td>
+        <td id="text"><input id="4" type ="text" value="0"></td>
+        <td id="text"><input id="5" type ="text" value="0"></td>
+        <td id="text"><input id="6" type ="text" value="0"></td>
+        <td id="text"><button onclick="Change2()">与答案交换</button></td>
     </tr>
     <tr>
-    <td><textarea id="demo1" type="text">&nbsp;</textarea></td>
-    <td><textarea id="demo2" type="text">&nbsp;</textarea></td>
-    <td><textarea id="demo3" type="text">&nbsp;</textarea></td>
-    <td><button onclick="XM()">叉乘</button></td>
+        <td id="tip"><a>&nbsp;</a></td>
+        <td><button onclick="Work()">计算</button></td>
+        <td><button onclick="Change()">交换</button></td>
     </tr>
     <tr>
-    <td><textarea id="demo4" type="text">ans</textarea></td>
-    <td><textarea id="demo5" type="text">area</textarea></td>
-    <td><textarea id="demo6" type="text">&nbsp;</textarea></td>
-    <td><button onclick="PM()">点乘</button></td>
+        <td id="tip"><a>基本</a></td>
+        <td><textarea id="demo7" type="text">A的模长</textarea></td>
+        <td><textarea id="demo8" type="text">B的模长</textarea></td>
+        <td><textarea id="demo9" type="text">A与B的夹角</textarea></td>
+    </tr>
+    <tr>
+        <td id="tip"><a>叉乘</a></td>
+        <td><textarea id="demo1" type="text">&nbsp;</textarea></td>
+        <td><textarea id="demo2" type="text">&nbsp;</textarea></td>
+        <td><textarea id="demo3" type="text">&nbsp;</textarea></td>
+    </tr>
+    <tr>
+        <td id="tip"><a>点乘</a></td>
+        <td><textarea id="demo4" type="text">点乘结果</textarea></td>
+        <td><textarea id="demo5" type="text">A在B上的分量</textarea></td>
+        <td><textarea id="demo6" type="text">B在A上的分量</textarea></td>
     </tr>
 </table>
+<canvas id="drawing1" width="150" height="150" style="border:1px solid #d3d3d3;background-color: antiquewhite">
+        Your browser does not support the HTML5 canvas tag.
+        </canvas>
+<canvas id="drawing2" width="150" height="150" style="border:1px solid #d3d3d3;background-color: antiquewhite">
+        Your browser does not support the HTML5 canvas tag.
+        </canvas>
+<canvas id="drawing3" width="150" height="150" style="border:1px solid #d3d3d3;background-color: antiquewhite">
+        Your browser does not support the HTML5 canvas tag.
+        </canvas>
 <script>
-function GetData(obj1,obj2,obj3,obj4,obj5,obj6){
-    obj1.num = parseInt(document.getElementById("1").value);
-    obj2.num = parseInt(document.getElementById("2").value);
-    obj3.num = parseInt(document.getElementById("3").value);
-    obj4.num = parseInt(document.getElementById("4").value);
-    obj5.num = parseInt(document.getElementById("5").value);
-    obj6.num = parseInt(document.getElementById("6").value);
+function GetData(obj){
+    obj[1] = parseInt(document.getElementById("1").value);
+    obj[2] = parseInt(document.getElementById("2").value);
+    obj[3] = parseInt(document.getElementById("3").value);
+    obj[4] = parseInt(document.getElementById("4").value);
+    obj[5] = parseInt(document.getElementById("5").value);
+    obj[6] = parseInt(document.getElementById("6").value);
 }
-
 function XM(){
-    var x1=new Object(),x2=new Object(),x3=new Object(),x4=new Object(),x5=new Object(),x6=new Object();
-    GetData(x1,x2,x3,x4,x5,x6);
-    document.getElementById('demo1').innerHTML  = x2.num*x6.num-x3.num*x5.num;
-    document.getElementById('demo2').innerHTML  = x3.num*x4.num-x1.num*x6.num;
-    document.getElementById('demo3').innerHTML  = x1.num*x5.num-x2.num*x4.num;
+    var x=[0,0,0,0,0,0,0];
+    GetData(x);
+    document.getElementById('demo1').innerHTML  = x[2]*x[6]-x[3]*x[5];
+    document.getElementById('demo2').innerHTML  = x[3]*x[4]-x[1]*x[6];
+    document.getElementById('demo3').innerHTML  = x[1]*x[5]-x[2]*x[4];
 }
 function PM(){
-    var x1=new Object(),x2=new Object(),x3=new Object(),x4=new Object(),x5=new Object(),x6=new Object();
-    GetData(x1,x2,x3,x4,x5,x6);
-    document.getElementById('demo4').innerHTML  = x1.num*x4.num+x2.num*x5.num+x3.num*x6.num;
+    var x=[0,0,0,0,0,0,0];
+    GetData(x);
+    document.getElementById('demo4').innerHTML  = x[1]*x[4]+x[2]*x[5]+x[3]*x[6];
+}
+function GetMo(){
+    var x=[0,0,0,0,0,0,0];
+    GetData(x);
+    var a=Math.sqrt(Math.pow(x[1],2)+Math.pow(x[2],2)+Math.pow(x[3],2));
+    var b=Math.sqrt(Math.pow(x[4],2)+Math.pow(x[5],2)+Math.pow(x[6],2));
+    var c=document.getElementById("demo4").value;
+    document.getElementById('demo7').innerHTML  = a.toFixed(6);
+    document.getElementById('demo8').innerHTML  = b.toFixed(6);
+    document.getElementById('demo9').innerHTML  = (Math.acos(c/parseInt(a*b))*180/Math.PI).toFixed(6);
+    document.getElementById('demo5').innerHTML  = (c/b).toFixed(6);
+    document.getElementById('demo6').innerHTML  = (c/a).toFixed(6);
+}
+function Change(){
+    var x=[0,0,0,0,0,0,0];
+    GetData(x);
+    document.getElementById('1').value  = x[4];
+    document.getElementById('2').value  = x[5];
+    document.getElementById('3').value  = x[6];
+    document.getElementById('4').value  = x[1];
+    document.getElementById('5').value  = x[2];
+    document.getElementById('6').value  = x[3];
+}
+function GetDatan(obj){
+    obj[1] = parseInt(document.getElementById("demo1").value);
+    obj[2] = parseInt(document.getElementById("demo2").value);
+    obj[3] = parseInt(document.getElementById("demo3").value);
+}
+function Change1(){
+    var x=[0,0,0,0,0,0,0];
+    GetDatan(x);
+    document.getElementById('1').value  = x[1];
+    document.getElementById('2').value  = x[2];
+    document.getElementById('3').value  = x[3];
+}
+function Change2(){
+    var x=[0,0,0,0,0,0,0];
+    GetDatan(x);
+    document.getElementById('4').value  = x[1];
+    document.getElementById('5').value  = x[2];
+    document.getElementById('6').value  = x[3];
+}
+function draw(obj,obj1,obj2){
+    var c=document.getElementById(obj);
+    var ctx=c.getContext("2d");
+    obj1=parseInt(obj1);
+    obj2=parseInt(obj2);
+
+    ctx.beginPath();
+    ctx.moveTo(10, 140);
+    ctx.lineTo(10, 10);
+    ctx.strokeStyle="black";
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(10, 140);
+    ctx.lineTo(140, 140);
+    ctx.strokeStyle="black";
+    ctx.stroke();
+
+    var x=[0,0,0,0,0,0,0];
+    GetData(x);
+
+    ctx.beginPath();
+    ctx.moveTo(10, 140);
+    ctx.lineTo(x[obj1]*10+10, 140-x[obj2]*10);
+    ctx.strokeStyle="blue";
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(10, 140);
+    ctx.lineTo(x[obj1+3]*10+10, 140-x[obj2+3]*10);
+    ctx.strokeStyle="blue";
+    ctx.stroke();
+}
+function Work(){
+    PM();
+    XM();
+    GetMo();
+    draw("drawing1",1,2);
+    draw("drawing2",2,3);
+    draw("drawing3",3,1);
 }
 </script>
 </body>
