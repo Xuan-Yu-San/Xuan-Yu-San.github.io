@@ -18,6 +18,7 @@
         #demo8{width: 126px;height: 20px;}
         #demo9{width: 126px;height: 20px;}
         #n{width: 20px;height: 20px;}
+        #id{width: 300px}
     </style>
     <style>
         .input{font-size: 14px; align-self: auto;}
@@ -26,6 +27,9 @@
     </style>
 </head>
 <body>
+
+<table><div id="text"></div></table>
+
 
 <div>
         <button onclick="document.getElementById('myImage').src='https://www.w3school.com.cn/i/eg_bulbon.gif'">开灯</button>
@@ -184,6 +188,23 @@ function Work(){
     draw("drawing2",2,3);
     draw("drawing3",3,1);
 }
+let divTyping = document.getElementById('text')
+  let i = 0,
+    timer = 0,
+    str = '向量运算'
+
+  function typing () {
+    if (i <= str.length) {
+      divTyping.innerHTML = str.slice(0, i++) + '_'
+      timer = setTimeout('typing()', 200)
+    }
+    else {
+      divTyping.innerHTML = str//结束打字,移除 _ 光标
+      clearTimeout(timer)
+    }
+  }
+
+  typing()
 </script>
 </body>
 </html>
