@@ -2,31 +2,71 @@
 <html>
 <head>
     <style>
-        .thisdiv{background-color: rgb(44, 44, 53);border-radius: 10px;width: 100%; height: 800px}
+        .topdiv{background-color: rgb(44, 44, 53,0.7);border-radius: 10px 10px 0 0;width: 100%; height: 100%}
+        .middlediv{background-color: rgb(44, 44, 53,0.7);border-radius: 0 0 0 0;width: 100%; height: 100%}
+        .bottomdiv{background-color: rgb(44, 44, 53,0.7);border-radius: 0 0 10px 10px;width: 100%; height: 100%}
         .word{-webkit-text-fill-color: azure}
     </style>
 </head>
-<body>
-
-<div class="thisdiv" id="text">
+<body style="background-size: 100%,100%;background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568735643281&di=7cba4119c6be2a8b432569d45640859d&imgtype=0&src=http%3A%2F%2Fimg3.duitang.com%2Fuploads%2Fitem%2F201511%2F22%2F20151122094629_Et8JS.png');">
+<div class="topdiv" id="text1">
+</div>
+<div class="middlediv" id="text2">
+</div>
+<div class="middlediv" id="text3">
+</div>
+<div class="middlediv" id="text4">
+</div>
+<div class="middlediv" id="text5">
+</div>
+<div class="middlediv" id="text6">
+</div>
+<div class="middlediv" id="text7">
+</div>
+<div class="middlediv" id="text8">
+</div>
+<div class="middlediv" id="text9">
+</div>
+<div class="bottomdiv" id="text10">
+</div>
+<div class="bottomdiv" id="text11">
 </div>
 <script>
-let divTyping = document.getElementById('text')
-  let i = 0,
+texts=['text1','text2','text3','text4','text5','text6','text7','text8','text9','text10','text11']
+strs=['bogon:~ username$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null↵</br>',
+  'bogon:~ username$ brew install nasm↵</br>','bogon:~ username$ cd desktop↵</br>',
+      'bogon:desktop username$ vim test.asm↵</br>','这里需要按key_I进行编辑:I↵</br>"test.asm" [New File] ',
+          'msg: db "hello world!", 0x0a</br>len: equ $-msg   </br>SECTION .text</br>global _main   </br>kernel:</br>     syscall</br>     ret</br>  _main:</br>     mov rax,0x2000004</br>     mov rdi,1</br>     mov rsi,msg</br>     mov rdx,len</br>     call kernel   </br>     mov rax,0x2000001</br>     mov rdi,0</br>     call kernel;',
+              '这里需要按key_ESC退出编辑:esc↵</br>:w↵ </br>:q↵',                  
+                  'bogon:~ username$ nasm -f macho64 nasm.asm -o nasm.o↵</br>',
+                      'bogon:~ username$ ld -o nasm -e _main nasm.o↵</br>',
+                          'bogon:~ username$ ./nasm↵</br>','bogon:~ username$ ./nasm</br>hello world!↵</br>',]
+let divTyping = document.getElementById(texts[0])
+  let i = 0,j = 1,n=17,
     timer = 0,
-    str='bogon:~ xuanyuwanqiu$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null 2> /dev/null'
+    str=strs[0]
   function typing () {
-    if (i <= str.length) {
-      divTyping.innerHTML = '<span class="word">'+str.slice(0, 18+i++) + '_'+'</span>'
-      timer = setTimeout('typing()', 50)
+    if(j==11)
+      clearTimeout(timer)
+    else if (i <= str.length-n) {
+      divTyping.innerHTML = '<span class="word">'+str.slice(0, n+i++)+ '_'+'</span>'
+      timer = setTimeout('typing()', 10)
     }
     else {
       divTyping.innerHTML = '<span class="word">'+str+'</span>'//结束打字,移除 _ 光标
-      clearTimeout(timer)
+      divTyping=document.getElementById(texts[j])
+      i=0,j++
+      timer=0
+      str=strs[j]
+      timer = setTimeout('typing()', 10)
     }
   }
-
   typing()
+  //divTyping=document.getElementById('text2')
+  //i=0 
+  //timer=0
+  //str='bogon:~ xuanyuwanqiu$ brew install nasm</br>'
+  //typing()
 </script>
 </body>
 </html>
